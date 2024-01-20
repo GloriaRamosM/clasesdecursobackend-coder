@@ -45,3 +45,5 @@ function mostrarLista1(array) {
 let resultado = mostrarLista1(lista);
 
 console.log(resultado);
+
+const resultado4 = " hola ";
