@@ -48,3 +48,5 @@ console.log(perrito);
 perrito.saludar();
 perrito.sonar();
 perrito.ladrar();
+
+console.log(perrita);
