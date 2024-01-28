@@ -72,13 +72,22 @@ function sumar(a, b) {
   });
 }
 
+// calculos es async porque esta llamando y ejecutando a suma, y suma es una new Promise
 async function calculos() {
   try {
-    let suma = await sumar(1, 8);
-    console.log("🚀 ~ calcular ~ suma:", suma);
+    let resta = await restar(20, 9);
+    console.log(resta);
   } catch (err) {
     console.log(err);
   }
 }
 
+function restar(a, b) {
+  return new Promise((resolve, reject) => {
+    if (a === 0 || b === 0) reject(" Operacion innecesaria");
+    if (a - b < 0)
+      reject(" La calculadora debe devolver solo numeros positivos");
+    resolve(a - b);
+  });
+}
 calculos();
