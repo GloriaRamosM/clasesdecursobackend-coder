@@ -50,13 +50,35 @@ la declaro y hago por fuera y la llamo dentro del map.*/
 
 // EJEMPLO DE LA CALCULADORA para identificar el callback
 
-const sumar = (a, b) => a + b;
-const restar = (a, b) => a - b;
-const multiplicar = (a, b) => a * b;
-const dividir = (a, b) => a / b;
+// const sumar = (a, b) => a + b;
+// const restar = (a, b) => a - b;
+// const multiplicar = (a, b) => a * b;
+// const dividir = (a, b) => a / b;
 
-function calculadora(a, b, callback) {
-  return callback(a, b);
+// function calculadora(a, b, callback) {
+//   return callback(a, b);
+// }
+
+// console.log(calculadora(20, 8, dividir));
+
+// PROMESAS = PROGRAMACION ASINCRONICA
+
+function sumar(a, b) {
+  return new Promise((resolve, reject) => {
+    if (a === 0 || b === 0) reject("Operacion innecesaria");
+    if (a + b < 0)
+      reject("La calculadora solo debe devolver valores positivos");
+    resolve(a + b);
+  });
 }
 
-console.log(calculadora(20, 8, dividir));
+async function calculos() {
+  try {
+    let suma = await sumar(1, 8);
+    console.log("🚀 ~ calcular ~ suma:", suma);
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+calculos();
