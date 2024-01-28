@@ -15,25 +15,48 @@ la declaro y hago por fuera y la llamo dentro del map.*/
 //   console.log(fruta, fruta.length);
 // }
 
-let arrayDeNumeros = [2, 4, 6, 8, 10];
+// let arrayDeNumeros = [2, 4, 6, 8, 10];
 
-function sumarMayores(arr) {
-  let mayores = arr.sort((a, b) => b - a);
+// function sumarMayores(arr, callback) {
+//   let mayores = arr.sort((a, b) => b - a);
 
-  let resultado = promedio(mayores);
+//   let resultado = callback(mayores);
 
-  return resultado;
+//   return resultado;
+// }
+
+// function promedio(arr) {
+//   let suma = arr[0] + arr[1];
+
+//   let resultado = suma / 2;
+
+//   return resultado;
+// }
+
+// function doble(arr) {
+//   let suma = arr[0] + arr[1];
+
+//   let resultado = suma * 2;
+
+//   return resultado;
+// }
+// console.log(
+//   "🚀 ~ sumarMayores(arrayDeNumeros);:",
+//   sumarMayores(arrayDeNumeros, doble)
+// );
+
+// // esto que acabamos de hacer Si es un callback porque la funcion promedio  esta pasando por parametro
+// // pero tambien lo podemos pasar fuera de los parametros
+
+// EJEMPLO DE LA CALCULADORA para identificar el callback
+
+const sumar = (a, b) => a + b;
+const restar = (a, b) => a - b;
+const multiplicar = (a, b) => a * b;
+const dividir = (a, b) => a / b;
+
+function calculadora(a, b, callback) {
+  return callback(a, b);
 }
 
-function promedio(arr) {
-  let suma = arr[0] + arr[1];
-
-  let resultado = suma / 2;
-
-  return resultado;
-}
-
-console.log(
-  "🚀 ~ sumarMayores(arrayDeNumeros);:",
-  sumarMayores(arrayDeNumeros)
-);
+console.log(calculadora(20, 8, dividir));
