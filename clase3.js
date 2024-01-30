@@ -63,6 +63,8 @@ la declaro y hago por fuera y la llamo dentro del map.*/
 
 // PROMESAS = PROGRAMACION ASINCRONICA
 
+// ESTE fue un ejercicio en clase
+
 function sumar(a, b) {
   return new Promise((resolve, reject) => {
     if (a === 0 || b === 0) reject("Operacion innecesaria");
@@ -91,3 +93,5 @@ function restar(a, b) {
   });
 }
 calculos();
+
+// YO PUEDO
