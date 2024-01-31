@@ -1,72 +1,154 @@
-let eventos = [];
+// // EJERCICIO SIN USAR CLASES
+// let eventos = [];
 
-let precioBaseDeGanacia = 0.25;
+// let precioBaseDeGanacia = 0.25;
 
-const getEventos = () => eventos;
+// const getEventos = () => eventos;
 
-function agregarEvento(
-  nombre,
-  lugar,
-  precio,
-  capacidad = 50,
-  fecha = new Date().toLocaleDateString()
-) {
-  const evento = {
-    id: generarId(),
-    nombre: nombre,
-    lugar: lugar,
-    precio: precio + precio * precioBaseDeGanacia,
-    capacidad: capacidad,
-    fecha: fecha,
-    participantes: [],
-  };
+// function agregarEvento(
+//   nombre,
+//   lugar,
+//   precio,
+//   capacidad = 50,
+//   fecha = new Date().toLocaleDateString()
+// ) {
+//   const evento = {
+//     id: generarId(),
+//     nombre: nombre,
+//     lugar: lugar,
+//     precio: precio + precio * precioBaseDeGanacia,
+//     capacidad: capacidad,
+//     fecha: fecha,
+//     participantes: [],
+//   };
 
-  return eventos.push(evento);
-}
+//   return eventos.push(evento);
+// }
 
-function generarId() {
-  let id = 0;
+// function generarId() {
+//   let id = 0;
 
-  if (eventos.length === 0) {
-    id = 1;
-  } else {
-    id = eventos[eventos.length - 1].id + 1;
+//   if (eventos.length === 0) {
+//     id = 1;
+//   } else {
+//     id = eventos[eventos.length - 1].id + 1;
+//   }
+
+//   return id;
+// }
+
+// function agregarUsuario(eventoID, usuarioID) {
+//   const evento = eventos.find((evento) => evento.id === eventoID);
+//   if (evento === -1) {
+//     console.log("Evento no existente");
+//   }
+
+//   const usuario = evento.participantes.includes(usuarioID);
+//   if (usuario) {
+//     console.log("Usuario ya registrado ");
+//   }
+
+//   return evento.participantes.push(usuarioID);
+// }
+
+// function ponerEventoEnGira(eventoID, nuevaLocalidad, nuevaFecha) {
+//   const evento = eventos.find((evento) => evento.id === eventoID);
+//   if (evento === -1) {
+//     console.log("Evento no existente");
+//   }
+
+//   const nuevoEvento = {
+//     ...evento,
+//     lugar: nuevaLocalidad,
+//     fecha: nuevaFecha,
+//     participantes: [],
+//   };
+
+//   return eventos.push(nuevoEvento);
+// }
+
+// agregarEvento("Eevento afterclass", "Argentina", 3000);
+// agregarUsuario(1, 14);
+// ponerEventoEnGira(1, "Buenos Aires", "23/01/2024");
+// console.log(getEventos());
+
+// EJERCICIO USANDO CLASES
+
+class TicketManager {
+  #precioBaseDeGanancia = 0.25;
+
+  constructor() {
+    this.eventos = [];
   }
 
-  return id;
-}
+  getEventos = () => this.eventos;
 
-function agregarUsuario(eventoID, usuarioID) {
-  const evento = eventos.find((evento) => evento.id === eventoID);
-  if (evento === -1) {
-    console.log("Evento no existente");
+  agregarEvento(
+    nombre,
+    lugar,
+    precio,
+    capacidad = 50,
+    fecha = new Date().toLocaleDateString()
+  ) {
+    const evento = {
+      id: this.generarId(),
+      nombre: nombre,
+      lugar: lugar,
+      precio: precio + precio * this.#precioBaseDeGanancia,
+      capacidad: capacidad,
+      fecha: fecha,
+      participantes: [],
+    };
+
+    return this.eventos.push(evento);
   }
 
-  const usuario = evento.participantes.includes(usuarioID);
-  if (usuario) {
-    console.log("Usuario ya registrado ");
+  generarId() {
+    let id = 0;
+
+    if (this.eventos.length === 0) {
+      id = 1;
+    } else {
+      id = this.eventos[this.eventos.length - 1].id + 1;
+    }
+
+    return id;
   }
 
-  return evento.participantes.push(usuarioID);
-}
+  agregarUsuario(eventoID, usuarioID) {
+    const evento = this.eventos.findIndex((evento) => evento.id === eventoID);
+    if (evento === -1) {
+      console.log("Evento no existente");
+    }
 
-function ponerEventoEnGira(eventoID, nuevaLocalidad, nuevaFecha) {
-  const evento = eventos.find((evento) => evento.id === eventoID);
-  if (evento === -1) {
-    console.log("Evento no existente");
+    const usuario = this.eventos[evento].participantes.includes(usuarioID);
+    if (usuario) {
+      console.log("Usuario ya registrado");
+    } else {
+      return this.eventos[evento].participantes.push(usuarioID);
+    }
   }
 
-  const nuevoEvento = {
-    ...evento,
-    lugar: nuevaLocalidad,
-    fecha: nuevaFecha,
-    participantes: [],
-  };
+  ponerEventoEnGira(eventoID, nuevaLocalidad, nuevaFecha) {
+    const evento = this.eventos.find((evento) => evento.id === eventoID);
+    if (evento === -1) {
+      console.log("Evento no existente");
+    }
 
-  return eventos.push(nuevoEvento);
+    const nuevoEvento = {
+      ...evento,
+      lugar: nuevaLocalidad,
+      fecha: nuevaFecha,
+      participantes: [],
+    };
+
+    return this.eventos.push(nuevoEvento);
+  }
 }
 
-agregarEvento("Eevento afterclass", "Argentina", 3000);
-agregarUsuario(1, 14);
-ponerEventoEnGira(1, "Buenos Aires", "23/01/2024");
-console.log(getEventos());
+const manejadorDeEventos = new TicketManager();
+manejadorDeEventos.agregarEvento("Evento afterclass", "Argentina", 3000);
+manejadorDeEventos.agregarUsuario(1, 14);
+manejadorDeEventos.agregarUsuario(1, 14);
+const result = manejadorDeEventos.getEventos();
+console.log("🚀 ~ result:", result);
