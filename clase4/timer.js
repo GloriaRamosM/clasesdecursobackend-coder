@@ -11,7 +11,7 @@ setTimeout(funcionAEjecutar, tiempoDeDemoraEnMilisegundos)*/
 
 // timer es una funcion que espera recibir un callback como parametro
 // setTimeout es una funcion que esta recibiendo una funcion (callback) como parametro
-//
+// no recibe clearInterval
 
 const timer = (callback) => {
   setTimeout(() => {
@@ -29,7 +29,7 @@ timer(mostrar);
 
 // setInterval, funciona tipo for, se va ejecutando
 //y hay que decirle hasta cuando, para que no quede infinito. siempre lleva un clearInterval
-
+// recibe clearInterval
 const contador = () => {
   let contador = 1;
   console.log("Realizando operacion");

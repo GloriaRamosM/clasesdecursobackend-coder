@@ -30,5 +30,6 @@ class Names {
   };
 }
 
+// en este ejemplo si no le paso nada, va a tener un valor por default
 const nombres = new Names();
 nombres.getName();
