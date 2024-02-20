@@ -7,13 +7,13 @@
 no importa si esta declara dentro de los mismo parametros, o si 
 la declaro y hago por fuera y la llamo dentro del map.*/
 
-// let arrayDeFrutas = ["kiwi", "manzana", "pera", "fresa"];
+let arrayDeFrutas = ["kiwi", "manzana", "pera", "fresa"];
 
-// arrayDeFrutas.map((fruta) => imprimirFruta(fruta));
+arrayDeFrutas.map((fruta) => imprimirFruta(fruta));
 
-// function imprimirFruta(fruta) {
-//   console.log(fruta, fruta.length);
-// }
+function imprimirFruta(fruta) {
+  console.log(fruta, fruta.length);
+}
 
 // let arrayDeNumeros = [2, 4, 6, 8, 10];
 
